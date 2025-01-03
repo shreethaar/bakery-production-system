@@ -11,7 +11,6 @@ class AuthController {
         // Start session if not already started
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
-            session_regenerate_id(true); // Prevent session fixation
         }
 
         // Check if the user is already logged in
@@ -22,24 +21,30 @@ class AuthController {
 
         // Handle form submission
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Sanitize and validate inputs
-            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
-            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+            // Sanitize inputs
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            // Validate login
-            $user = $this->userModel->validateLogin($username, $password);
+            // Validate credentials
+            $user = $this->userModel->getUserByUsername($username);
 
             if ($user) {
-                // Set session variables
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['role'] = $user['role'];
+                // Verify password
+                if (password_verify($password, $user['password'])) {
+                    // Set session variables
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['role'] = $user['role'];
 
-                // Redirect to dashboard
-                header('Location: /dashboard');
-                exit;
+                    // Redirect to dashboard
+                    header('Location: /dashboard');
+                    exit;
+                } else {
+                    // Invalid password
+                    $error = "Invalid password.";
+                }
             } else {
-                // Invalid credentials
-                $error = "Invalid username or password.";
+                // Invalid username
+                $error = "Invalid username.";
             }
         }
 
@@ -56,8 +61,6 @@ class AuthController {
 
         // Destroy the session
         session_destroy();
-
-        // Redirect to login page
         header('Location: /login');
         exit;
     }

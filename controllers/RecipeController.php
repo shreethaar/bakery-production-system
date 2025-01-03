@@ -6,65 +6,39 @@ class RecipeController {
         $this->recipeModel = $recipeModel;
     }
 
-    // Show the form for creating a new recipe
-    public function create() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Handle form submission
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'ingredients' => $_POST['ingredients'],
-                'steps' => $_POST['steps'],
-                'equipment' => $_POST['equipment'],
-                'prep_time' => $_POST['prep_time'],
-                'yield' => $_POST['yield'],
-                'created_by' => $_SESSION['user_id'] // Logged-in user
-            ];
-
-            $this->recipeModel->createRecipe($data);
-            header('Location: /recipes');
-            exit;
-        } else {
-            // Show the create recipe form
-            include __DIR__ . '/../views/recipe/create.php';
-        }
-    }
-
-    // Show the form for updating an existing recipe
-    public function update($id) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Handle form submission
-            $data = [
-                'name' => $_POST['name'],
-                'description' => $_POST['description'],
-                'ingredients' => $_POST['ingredients'],
-                'steps' => $_POST['steps'],
-                'equipment' => $_POST['equipment'],
-                'prep_time' => $_POST['prep_time'],
-                'yield' => $_POST['yield']
-            ];
-
-            $this->recipeModel->updateRecipe($id, $data);
-            header('Location: /recipes');
-            exit;
-        } else {
-            // Fetch the recipe and show the update form
-            $recipe = $this->recipeModel->getRecipe($id);
-            include __DIR__ . '/../views/recipe/update.php';
-        }
-    }
-
-    // List all recipes
-    public function list() {
+    // Method to list all recipes
+    public function listRecipes() {
+        // Fetch all recipes from the model
         $recipes = $this->recipeModel->getAllRecipes();
+
+        // Include the view to display the recipes
         include __DIR__ . '/../views/recipe/list.php';
     }
 
-    // Delete a recipe
-    public function delete($id) {
-        $this->recipeModel->deleteRecipe($id);
-        header('Location: /recipes');
-        exit;
+    // Method to show the recipe creation form
+    public function createRecipe() {
+        include __DIR__ . '/../views/recipe/create.php';
+    }
+
+    // Method to handle recipe creation
+    public function storeRecipe() {
+        // Handle form submission and save the recipe
+        // ...
+    }
+
+    // Method to show the recipe update form
+    public function updateRecipe($id) {
+        // Fetch the recipe by ID
+        $recipe = $this->recipeModel->getRecipeById($id);
+
+        // Include the view to display the update form
+        include __DIR__ . '/../views/recipe/update.php';
+    }
+
+    // Method to handle recipe updates
+    public function saveRecipe($id) {
+        // Handle form submission and update the recipe
+        // ...
     }
 }
 ?>
