@@ -22,9 +22,11 @@ class UserModel {
     }
     
     public function getUserByUsername($username) {
-        $sql = "SELECT id, name, email, username, role, created_at FROM {$this->table} WHERE username = ?";
+        // Include the password column in the SELECT statement
+        $sql = "SELECT id, name, email, username, password, role, created_at FROM {$this->table} WHERE username = :username";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([$username]);
+        // Fix the execute parameter syntax
+        $stmt->execute(['username' => $username]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
@@ -64,3 +66,4 @@ class UserModel {
         return false;
     }
 }
+?>
