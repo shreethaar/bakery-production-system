@@ -8,48 +8,47 @@ class BatchModel {
 
     // Method to fetch all batches with optional filters and sorting
     public function getAllBatches($filters = [], $sortBy = 'start_time', $sortOrder = 'DESC') {
-        $query = "SELECT b.*, r.name as recipe_name, s.production_date,
-                  STRING_AGG(DISTINCT CONCAT(u.name, ' (', ba.task, ')'), ', ') as assigned_users
-                  FROM batches b
-                  LEFT JOIN recipes r ON b.recipe_id = r.id
-                  LEFT JOIN production_schedules s ON b.production_schedule_id = s.id
-                  LEFT JOIN batch_assignments ba ON b.id = ba.batch_id
-                  LEFT JOIN users u ON ba.user_id = u.id";
+    $query = "SELECT b.*, r.name as recipe_name, s.production_date,
+              STRING_AGG(DISTINCT CONCAT(u.name, ' (', ba.task, ')'), ', ') as assigned_users
+              FROM batches b
+              LEFT JOIN recipes r ON b.recipe_id = r.id
+              LEFT JOIN production_schedules s ON b.production_schedule_id = s.id
+              LEFT JOIN batch_assignments ba ON b.id = ba.batch_id
+              LEFT JOIN users u ON ba.user_id = u.id";
 
-        $whereConditions = [];
-        $params = [];
+    $whereConditions = [];
+    $params = [];
 
-        // Apply filters
-        if (!empty($filters['recipe_id'])) {
-            $whereConditions[] = "b.recipe_id = :recipe_id";
-            $params['recipe_id'] = $filters['recipe_id'];
-        }
-        if (!empty($filters['status'])) {
-            $whereConditions[] = "b.status = :status";
-            $params['status'] = $filters['status'];
-        }
-        if (!empty($filters['date'])) {
-            $whereConditions[] = "DATE(b.start_time) = :date";
-            $params['date'] = $filters['date'];
-        }
-
-        if (!empty($whereConditions)) {
-            $query .= " WHERE " . implode(" AND ", $whereConditions);
-        }
-
-        $query .= " GROUP BY b.id, r.name, s.production_date";
-
-        // Add sorting
-        $validSortColumns = ['id', 'recipe_name', 'production_date', 'start_time', 'status'];
-        if (in_array($sortBy, $validSortColumns)) {
-            $query .= " ORDER BY $sortBy $sortOrder";
-        }
-
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute($params);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Apply filters
+    if (!empty($filters['recipe_id'])) {
+        $whereConditions[] = "b.recipe_id = :recipe_id";
+        $params['recipe_id'] = $filters['recipe_id'];
+    }
+    if (!empty($filters['status'])) {
+        $whereConditions[] = "b.status = :status";
+        $params['status'] = $filters['status'];
+    }
+    if (!empty($filters['date'])) {
+        $whereConditions[] = "DATE(b.start_time) = :date";
+        $params['date'] = $filters['date'];
     }
 
+    if (!empty($whereConditions)) {
+        $query .= " WHERE " . implode(" AND ", $whereConditions);
+    }
+
+    $query .= " GROUP BY b.id, r.name, s.production_date";
+
+    // Add sorting
+    $validSortColumns = ['id', 'recipe_name', 'production_date', 'start_time', 'status'];
+    if (in_array($sortBy, $validSortColumns)) {
+        $query .= " ORDER BY $sortBy $sortOrder";
+    }
+
+    $stmt = $this->pdo->prepare($query);
+    $stmt->execute($params);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
     // Method to fetch a single batch by ID
     public function getBatchById($batchId) {
         $sql = "SELECT b.*, r.name as recipe_name, s.production_date
