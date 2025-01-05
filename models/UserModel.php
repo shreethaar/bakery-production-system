@@ -6,7 +6,19 @@ class UserModel {
     public function __construct($database) {
         $this->db = $database;
     }
-    
+    /*
+    public function createUser($data) {
+        $sql = "INSERT INTO users (name, email, username, password, role) VALUES (:name, :email, :username, :password, :role)";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'username' => $data['username'],
+            'password' => password_hash($data['password'], PASSWORD_DEFAULT),
+            'role' => $data['role']
+        ]);
+    }
+    */
     public function getUser($id) {
         $sql = "SELECT id, name, email, username, role, created_at FROM {$this->table} WHERE id = ?";
         $stmt = $this->db->prepare($sql);

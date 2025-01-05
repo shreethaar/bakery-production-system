@@ -34,7 +34,7 @@ $recipeController = new RecipeController($recipeModel);
 $productionController = new ProductionController($productionModel);
 $batchController = new BatchController($batchModel);
 
-// Routing logic (Basic Example)
+// Routing logic
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($requestUri, '/'));
 
@@ -86,15 +86,81 @@ switch ($segments[0]) {
         break;
 
     case 'batch':
-        if (isset($segments[1]) && $segments[1] == 'track') {
-            $batchController->trackBatch();
+        // Check if the user is logged in
+        session_start();
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit;
+        }
+
+        // Batch routes
+        if (isset($segments[1])) {
+            switch ($segments[1]) {
+                case 'create':
+                    $batchController->create();
+                    break;
+
+                case 'store':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $batchController->store();
+                    } else {
+                        header('Location: /batch');
+                        exit;
+                    }
+                    break;
+
+                case 'edit':
+                    if (isset($segments[2])) {
+                        $batchController->edit($segments[2]);
+                    } else {
+                        header('Location: /batch');
+                        exit;
+                    }
+                    break;
+
+                case 'update':
+                    if (isset($segments[2]) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $batchController->update($segments[2]);
+                    } else {
+                        header('Location: /batch');
+                        exit;
+                    }
+                    break;
+
+                case 'delete':
+                    if (isset($segments[2])) {
+                        $batchController->delete($segments[2]);
+                    } else {
+                        header('Location: /batch');
+                        exit;
+                    }
+                    break;
+
+                case 'track':
+                    $batchController->trackBatch();
+                    break;
+
+                default:
+                    // Show a 404 page or redirect to batch list
+                    header('Location: /batch');
+                    exit;
+            }
         } else {
-            $batchController->batchStatus();
+            // Default batch route (list batches)
+            $batchController->index();
         }
         break;
 
+    case 'register':
+        $authController->register();
+        break;
+
+    case 'forgot-password':
+        $authController->forgotPassword();
+        break;
+
     default:
-        // Show a 404 page or home page if the route is not found
+        // Show a 404 page or redirect to home
         echo "404 - Not Found";
         break;
 }
