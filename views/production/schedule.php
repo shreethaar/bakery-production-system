@@ -1,5 +1,21 @@
 <?php include __DIR__ . '/../../includes/header.php'; ?>
 
+
+<!-- Display success or error messages -->
+<?php if (isset($_SESSION['success_message'])): ?>
+    <div class="alert alert-success">
+        <?= htmlspecialchars($_SESSION['success_message']) ?>
+    </div>
+    <?php unset($_SESSION['success_message']); ?>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['error_message'])): ?>
+    <div class="alert alert-danger">
+        <?= htmlspecialchars($_SESSION['error_message']) ?>
+    </div>
+    <?php unset($_SESSION['error_message']); ?>
+<?php endif; ?>
+
 <h1>Schedule Production</h1>
 <form action="/production/schedule" method="POST">
     <label for="recipe_id">Recipe:</label>

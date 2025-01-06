@@ -66,10 +66,14 @@ switch ($segments[0]) {
     case 'logout':
         $authController->logout();
         break;
-
+    
     case 'recipes':
         if (isset($segments[1]) && $segments[1] == 'create') {
-            $recipeController->createRecipe();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $recipeController->storeRecipe(); // Handle form submission
+            } else {
+                $recipeController->createRecipe(); // Display the form
+            }
         } elseif (isset($segments[1]) && $segments[1] == 'update') {
             $recipeController->updateRecipe($segments[2]);
         } else {
