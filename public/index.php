@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+// Generate CSRF token if it doesn't exist
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 // Include config and routing
 require_once __DIR__ . '/../config/config.php';
 

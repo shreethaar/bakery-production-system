@@ -17,20 +17,22 @@ class RecipeController {
 
     // Method to list all recipes
     public function listRecipes() {
-        $this->requireLogin(); // Ensure the user is logged in
+    $this->requireLogin(); // Ensure the user is logged in
 
-        // Fetch all recipes from the model
-        $recipes = $this->recipeModel->getAllRecipes();
+    // Get the current page from the query string (default to 1 if not set)
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $perPage = 10; // Number of recipes per page
 
-        // Debug: Print the fetched recipes
-        echo "<pre>";
-        print_r($recipes);
-        echo "</pre>";
+    // Fetch paginated recipes from the model
+    $recipes = $this->recipeModel->getRecipesPaginated($page, $perPage);
 
-        // Include the view to display the recipes
-        include __DIR__ . '/../views/recipe/list.php';
-    }
+    // Get the total number of recipes for pagination
+    $totalRecipes = $this->recipeModel->getTotalRecipes();
+    $totalPages = ceil($totalRecipes / $perPage);
 
+    // Include the view to display the recipes
+    include __DIR__ . '/../views/recipe/list.php';
+}
     // Method to display the "Create Recipe" form
     public function createRecipe() {
         $this->requireLogin(); // Ensure the user is logged in
@@ -39,53 +41,62 @@ class RecipeController {
 
     // Method to handle recipe creation form submission
     public function storeRecipe() {
-        $this->requireLogin(); // Ensure the user is logged in
+    $this->requireLogin(); // Ensure the user is logged in
 
-        // Handle form submission and save the recipe
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Sanitize and validate input data
-            $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $ingredients = filter_input(INPUT_POST, 'ingredients', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $steps = filter_input(INPUT_POST, 'steps', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $equipment = filter_input(INPUT_POST, 'equipment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $prep_time = filter_input(INPUT_POST, 'prep_time', FILTER_SANITIZE_NUMBER_INT);
-            $yield = filter_input(INPUT_POST, 'yield', FILTER_SANITIZE_NUMBER_INT);
-            $created_by = $_SESSION['user_id']; // Use the logged-in user's ID
+    // Handle form submission and save the recipe
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Validate CSRF token
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            $_SESSION['error_message'] = "Invalid CSRF token.";
+            header("Location: /recipes/create");
+            exit;
+        }
 
-            // Validate required fields
-            if (empty($name) || empty($description) || empty($ingredients) || empty($steps) || empty($equipment) || empty($prep_time) || empty($yield)) {
-                $_SESSION['error_message'] = "All fields are required.";
-                header("Location: /recipes/create");
-                exit;
-            }
+        // Sanitize and validate input data
+        $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $ingredients = filter_input(INPUT_POST, 'ingredients', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $steps = filter_input(INPUT_POST, 'steps', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $equipment = filter_input(INPUT_POST, 'equipment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $prep_time = filter_input(INPUT_POST, 'prep_time', FILTER_SANITIZE_NUMBER_INT);
+        $yield = filter_input(INPUT_POST, 'yield', FILTER_SANITIZE_NUMBER_INT);
+        $created_by = $_SESSION['user_id']; // Use the logged-in user's ID
 
-            try {
-                // Create the recipe
-                $recipeId = $this->recipeModel->createRecipe(
-                    $name,
-                    $description,
-                    json_decode($ingredients, true), // Convert JSON string to array
-                    json_decode($steps, true),       // Convert JSON string to array
-                    json_decode($equipment, true),   // Convert JSON string to array
-                    $prep_time,
-                    $yield,
-                    $created_by
-                );
+        // Validate required fields
+        if (empty($name) || empty($description) || empty($ingredients) || empty($steps) || empty($equipment) || empty($prep_time) || empty($yield)) {
+            $_SESSION['error_message'] = "All fields are required.";
+            header("Location: /recipes/create");
+            exit;
+        }
 
-                // Redirect to the recipe list with a success message
-                $_SESSION['success_message'] = "Recipe created successfully!";
-                header("Location: /recipes");
-                exit;
-            } catch (Exception $e) {
-                // Handle errors
-                $_SESSION['error_message'] = "Error creating recipe: " . $e->getMessage();
-                header("Location: /recipes/create");
-                exit;
-            }
+        try {
+            // Create the recipe
+            $recipeId = $this->recipeModel->createRecipe(
+                $name,
+                $description,
+                json_decode($ingredients, true), // Convert JSON string to array
+                json_decode($steps, true),       // Convert JSON string to array
+                json_decode($equipment, true),   // Convert JSON string to array
+                $prep_time,
+                $yield,
+                $created_by
+            );
+
+            // Redirect to the recipe list with a success message
+            $_SESSION['success_message'] = "Recipe created successfully!";
+            header("Location: /recipes");
+            exit;
+        } catch (Exception $e) {
+            // Log the error
+            error_log("Error creating recipe: " . $e->getMessage(), 3, __DIR__ . '/../../logs/error.log');
+
+            // Display a user-friendly error message
+            $_SESSION['error_message'] = "An error occurred while creating the recipe. Please try again.";
+            header("Location: /recipes/create");
+            exit;
         }
     }
-
+}
     // Method to show the recipe update form
     public function updateRecipe($id) {
         $this->requireLogin(); // Ensure the user is logged in
@@ -109,6 +120,13 @@ class RecipeController {
 
         // Handle form submission and update the recipe
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validate CSRF token
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                $_SESSION['error_message'] = "Invalid CSRF token.";
+                header("Location: /recipes/update/$id");
+                exit;
+            }
+
             $name = $_POST['name'];
             $description = $_POST['description'];
             $ingredients = json_decode($_POST['ingredients'], true);
@@ -131,19 +149,28 @@ class RecipeController {
     public function deleteRecipe($id) {
         $this->requireLogin(); // Ensure the user is logged in
 
-        try {
-            // Delete the recipe
-            $this->recipeModel->deleteRecipe($id);
+        // Validate CSRF token
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                $_SESSION['error_message'] = "Invalid CSRF token.";
+                header("Location: /recipes");
+                exit;
+            }
 
-            // Redirect to the recipe list with a success message
-            $_SESSION['success_message'] = "Recipe deleted successfully!";
-        } catch (Exception $e) {
-            // Handle errors
-            $_SESSION['error_message'] = "Error deleting recipe: " . $e->getMessage();
+            try {
+                // Delete the recipe
+                $this->recipeModel->deleteRecipe($id);
+
+                // Redirect to the recipe list with a success message
+                $_SESSION['success_message'] = "Recipe deleted successfully!";
+            } catch (Exception $e) {
+                // Handle errors
+                $_SESSION['error_message'] = "Error deleting recipe: " . $e->getMessage();
+            }
+
+            header("Location: /recipes");
+            exit;
         }
-
-        header("Location: /recipes");
-        exit;
     }
 }
 ?>

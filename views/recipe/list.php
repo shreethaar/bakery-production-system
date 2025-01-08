@@ -12,6 +12,13 @@
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['error_message'])): ?>
+        <div class="alert alert-danger">
+            <?= htmlspecialchars($_SESSION['error_message']) ?>
+        </div>
+        <?php unset($_SESSION['error_message']); ?>
+    <?php endif; ?>
+
     <h1>Recipe List</h1>
 
     <!-- Add the "Create Recipe" button -->
@@ -29,6 +36,7 @@
                 <th>Equipment</th>
                 <th>Preparation Time</th>
                 <th>Yield</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -59,10 +67,37 @@
                     </td>
                     <td><?= htmlspecialchars($recipe['prep_time']) ?> minutes</td>
                     <td><?= htmlspecialchars($recipe['yield']) ?></td>
+                    <td>
+                        <!-- Edit Button (Link) -->
+                        <a href="/recipes/update/<?= $recipe['id'] ?>" class="btn-edit">Edit</a>
+
+                        <!-- Delete Button (Form with CSRF Token) -->
+                        <form action="/recipes/delete/<?= $recipe['id'] ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this recipe?');" style="display: inline;">
+                            <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="/recipes?page=<?= $page - 1 ?>" class="pagination-link">Previous</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+            <a href="/recipes?page=<?= $i ?>" class="pagination-link <?= $i == $page ? 'active' : '' ?>">
+                <?= $i ?>
+            </a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+            <a href="/recipes?page=<?= $page + 1 ?>" class="pagination-link">Next</a>
+        <?php endif; ?>
+    </div>
 </div>
 
 <?php include __DIR__ . '/../../includes/footer.php'; ?>

@@ -19,5 +19,5 @@ try {
 }
 
 // Return the connection
-return $dbh;
+return $dbh; 
 ?>
