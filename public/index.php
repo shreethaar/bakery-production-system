@@ -9,6 +9,9 @@ if (empty($_SESSION['csrf_token'])) {
 // Include config and routing
 require_once __DIR__ . '/../config/config.php';
 
+// Include middleware
+require_once __DIR__ . '/../includes/Middleware.php';
+
 // Include models
 require_once __DIR__ . '/../models/UserModel.php';
 require_once __DIR__ . '/../models/RecipeModel.php';
@@ -61,20 +64,16 @@ switch ($segments[0]) {
         break;
 
     case 'dashboard':
-        // Check if the user is logged in
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login');
-            exit;
-        }
+        Middleware::requireLogin(); // Ensure the user is logged in
         include __DIR__ . '/../views/dashboard.php';
         break;
 
     case 'logout':
         $authController->logout();
         break;
-    
+
     case 'recipes':
+        Middleware::requireLogin(); // Ensure the user is logged in
         if (isset($segments[1]) && $segments[1] == 'create') {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $recipeController->storeRecipe(); // Handle form submission
@@ -89,6 +88,7 @@ switch ($segments[0]) {
         break;
 
     case 'production':
+        Middleware::requireLogin(); // Ensure the user is logged in
         if (isset($segments[1]) && $segments[1] == 'schedule') {
             $productionController->scheduleProduction();
         } else {
@@ -97,14 +97,7 @@ switch ($segments[0]) {
         break;
 
     case 'batch':
-        // Check if the user is logged in
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login');
-            exit;
-        }
-
-        // Batch routes
+        Middleware::requireLogin(); // Ensure the user is logged in
         if (isset($segments[1])) {
             switch ($segments[1]) {
                 case 'create':

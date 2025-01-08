@@ -6,18 +6,9 @@ class ProductionController {
         $this->productionModel = $productionModel;
     }
 
-    // Helper method to check if the user is logged in
-    private function requireLogin() {
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
-            header('Location: /login');
-            exit;
-        }
-    }
-
     // Method to list all production schedules
     public function listSchedules() {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Fetch all production schedules from the model
         $schedules = $this->productionModel->getAllSchedules();
@@ -28,7 +19,7 @@ class ProductionController {
 
     // Method to show the production scheduling form
     public function scheduleProduction() {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Include the view to display the schedule production form
         include __DIR__ . '/../views/production/schedule.php';
@@ -36,7 +27,7 @@ class ProductionController {
 
     // Method to handle production scheduling
     public function storeSchedule() {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Handle form submission and save the schedule
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -51,13 +42,20 @@ class ProductionController {
             $status = 'scheduled'; // Default status
             $created_by = $_SESSION['user_id']; // Use the logged-in user's ID
 
-            // Create the production schedule
-            $scheduleId = $this->productionModel->createSchedule($recipe_id, $order_id, $production_date, $start_time, $end_time, $quantity, $assigned_baker, $equipment_needed, $status, $created_by);
+            try {
+                // Create the production schedule
+                $scheduleId = $this->productionModel->createSchedule($recipe_id, $order_id, $production_date, $start_time, $end_time, $quantity, $assigned_baker, $equipment_needed, $status, $created_by);
 
-            // Redirect to the production schedules list with a success message
-            $_SESSION['success_message'] = "Production schedule created successfully!";
-            header("Location: /production");
-            exit;
+                // Redirect to the production schedules list with a success message
+                $_SESSION['success_message'] = "Production schedule created successfully!";
+                header("Location: /production");
+                exit;
+            } catch (Exception $e) {
+                // Handle errors
+                $_SESSION['error_message'] = "Error creating production schedule: " . $e->getMessage();
+                header("Location: /production/schedule");
+                exit;
+            }
         }
     }
 }

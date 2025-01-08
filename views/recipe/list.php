@@ -12,6 +12,7 @@
         <?php unset($_SESSION['success_message']); ?>
     <?php endif; ?>
 
+    <!-- Display error message if set -->
     <?php if (isset($_SESSION['error_message'])): ?>
         <div class="alert alert-danger">
             <?= htmlspecialchars($_SESSION['error_message']) ?>
@@ -36,7 +37,7 @@
                 <th>Equipment</th>
                 <th>Preparation Time</th>
                 <th>Yield</th>
-                <th>Actions</th>
+                <th>Actions</th> <!-- New column for Edit and Delete buttons -->
             </tr>
         </thead>
         <tbody>

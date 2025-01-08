@@ -17,7 +17,7 @@ class RecipeController {
 
     // Method to list all recipes
     public function listRecipes() {
-    $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // use middleware to check login
 
     // Get the current page from the query string (default to 1 if not set)
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -35,16 +35,21 @@ class RecipeController {
 }
     // Method to display the "Create Recipe" form
     public function createRecipe() {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
         include __DIR__ . '/../views/recipe/create.php'; // Render the form
     }
 
     // Method to handle recipe creation form submission
     public function storeRecipe() {
-    $this->requireLogin(); // Ensure the user is logged in
+    Middleware::requireLogin(); // Ensure the user is logged in
 
     // Handle form submission and save the recipe
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Debug: Print all POST data
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+
         // Validate CSRF token
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
             $_SESSION['error_message'] = "Invalid CSRF token.";
@@ -55,12 +60,30 @@ class RecipeController {
         // Sanitize and validate input data
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $ingredients = filter_input(INPUT_POST, 'ingredients', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $steps = filter_input(INPUT_POST, 'steps', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $equipment = filter_input(INPUT_POST, 'equipment', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $prep_time = filter_input(INPUT_POST, 'prep_time', FILTER_SANITIZE_NUMBER_INT);
         $yield = filter_input(INPUT_POST, 'yield', FILTER_SANITIZE_NUMBER_INT);
         $created_by = $_SESSION['user_id']; // Use the logged-in user's ID
+
+        // Sanitize array fields manually
+        $ingredients = $_POST['ingredients'] ?? [];
+        $steps = $_POST['steps'] ?? [];
+        $equipment = $_POST['equipment'] ?? [];
+
+        // Sanitize each item in the arrays
+        $ingredients = array_map('htmlspecialchars', $ingredients);
+        $steps = array_map('htmlspecialchars', $steps);
+        $equipment = array_map('htmlspecialchars', $equipment);
+
+        // Debug: Print sanitized values
+        echo "<pre>";
+        echo "Name: $name\n";
+        echo "Description: $description\n";
+        echo "Ingredients: " . print_r($ingredients, true) . "\n";
+        echo "Steps: " . print_r($steps, true) . "\n";
+        echo "Equipment: " . print_r($equipment, true) . "\n";
+        echo "Prep Time: $prep_time\n";
+        echo "Yield: $yield\n";
+        echo "</pre>";
 
         // Validate required fields
         if (empty($name) || empty($description) || empty($ingredients) || empty($steps) || empty($equipment) || empty($prep_time) || empty($yield)) {
@@ -74,9 +97,9 @@ class RecipeController {
             $recipeId = $this->recipeModel->createRecipe(
                 $name,
                 $description,
-                json_decode($ingredients, true), // Convert JSON string to array
-                json_decode($steps, true),       // Convert JSON string to array
-                json_decode($equipment, true),   // Convert JSON string to array
+                $ingredients, // Already an array
+                $steps,       // Already an array
+                $equipment,   // Already an array
                 $prep_time,
                 $yield,
                 $created_by
@@ -87,19 +110,17 @@ class RecipeController {
             header("Location: /recipes");
             exit;
         } catch (Exception $e) {
-            // Log the error
-            error_log("Error creating recipe: " . $e->getMessage(), 3, __DIR__ . '/../../logs/error.log');
-
-            // Display a user-friendly error message
-            $_SESSION['error_message'] = "An error occurred while creating the recipe. Please try again.";
+            // Handle errors
+            $_SESSION['error_message'] = "Error creating recipe: " . $e->getMessage();
             header("Location: /recipes/create");
             exit;
         }
     }
 }
+
     // Method to show the recipe update form
     public function updateRecipe($id) {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Fetch the recipe by ID
         $recipe = $this->recipeModel->getRecipeById($id);
@@ -116,7 +137,7 @@ class RecipeController {
 
     // Method to handle recipe updates
     public function saveRecipe($id) {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Handle form submission and update the recipe
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -147,7 +168,7 @@ class RecipeController {
 
     // Method to delete a recipe
     public function deleteRecipe($id) {
-        $this->requireLogin(); // Ensure the user is logged in
+        Middleware::requireLogin(); // Ensure the user is logged in
 
         // Validate CSRF token
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

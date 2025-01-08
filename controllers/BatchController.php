@@ -8,6 +8,8 @@ class BatchController {
 
     // Method to display all batches with optional filters and sorting
     public function index() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         // Get filters and sorting parameters from the request
         $filters = [
             'recipe_id' => $_GET['recipe'] ?? '',
@@ -29,6 +31,8 @@ class BatchController {
 
     // Method to show the form for creating a new batch
     public function create() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         // Fetch related data for the form
         $recipes = $this->batchModel->getAllRecipes();
         $schedules = $this->batchModel->getAllSchedules();
@@ -40,6 +44,8 @@ class BatchController {
 
     // Method to handle the creation of a new batch
     public function store() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Get form data
             $recipeId = $_POST['recipe_id'];
@@ -68,6 +74,8 @@ class BatchController {
 
     // Method to show the form for editing a batch
     public function edit($batchId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         // Fetch the batch by ID
         $batch = $this->batchModel->getBatchById($batchId);
 
@@ -89,6 +97,8 @@ class BatchController {
 
     // Method to handle the update of a batch
     public function update($batchId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Get form data
             $recipeId = $_POST['recipe_id'];
@@ -118,6 +128,8 @@ class BatchController {
 
     // Method to handle the deletion of a batch
     public function delete($batchId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         try {
             // Delete the batch
             $this->batchModel->deleteBatch($batchId);
@@ -147,6 +159,8 @@ class BatchController {
 
     // Method to display batch status (legacy method, can be removed or updated)
     public function batchStatus() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         // Fetch all batches from the model
         $batches = $this->batchModel->getAllBatches();
 
@@ -156,12 +170,17 @@ class BatchController {
 
     // Method to show the batch tracking form (legacy method, can be removed or updated)
     public function trackBatch() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         include __DIR__ . '/../views/batch/track.php';
     }
 
     // Method to handle batch tracking (legacy method, can be removed or updated)
     public function storeBatch() {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
         // Handle form submission and save the batch
         // ...
     }
 }
+?>

@@ -201,3 +201,50 @@ table a:hover {
 .btn-delete:hover {
     background-color: #c82333;
 }
+
+/* Style for the Create Recipe button */
+.create-recipe-button {
+    margin-bottom: 20px;
+}
+
+.btn-create-recipe {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-create-recipe:hover {
+    background-color: #218838;
+}
+
+/* Style for the Edit and Delete buttons */
+.btn-edit, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
