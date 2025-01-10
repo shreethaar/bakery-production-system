@@ -81,11 +81,16 @@ switch ($segments[0]) {
                 $recipeController->createRecipe(); // Display the form
             }
         } elseif (isset($segments[1]) && $segments[1] == 'update') {
-            $recipeController->updateRecipe($segments[2]);
+            if ($_SERVER['REQUEST_METHOD']==='POST') {
+                $recipeController->saveRecipe($segments[2]);
+            } else {
+                $recipeController->updateRecipe($segments[2]);
+            }
         } else {
             $recipeController->listRecipes();
         }
         break;
+
 
     case 'production':
         Middleware::requireLogin(); // Ensure the user is logged in

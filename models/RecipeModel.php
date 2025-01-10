@@ -96,8 +96,14 @@ class RecipeModel {
             'prep_time' => $prep_time,
             'yield' => $yield
         ]);
-    }
 
+    // Debug: Check if the query executed successfully
+        if ($stmt->rowCount() > 0) {
+            echo "Recipe updated successfully!";
+        } else {
+            echo "No rows affected. Recipe may not exist or data is unchanged.";
+        }
+    }
     // Method to delete a recipe
     public function deleteRecipe($id) {
         $sql = "DELETE FROM recipes WHERE id = :id";
