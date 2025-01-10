@@ -86,6 +86,13 @@ switch ($segments[0]) {
             } else {
                 $recipeController->updateRecipe($segments[2]);
             }
+        } elseif (isset($segments[1]) && $segments[1] == 'delete') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $recipeController->deleteRecipe($segments[2]); // Handle delete request
+        } else {
+            header('Location: /recipes'); // Redirect if not a POST request
+            exit;
+        }
         } else {
             $recipeController->listRecipes();
         }
