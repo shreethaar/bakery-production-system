@@ -6,9 +6,10 @@ class ProductionModel {
         $this->pdo = $pdo;
     }
 
-    // Method to fetch all production schedules
     public function getAllSchedules() {
-        $sql = "SELECT * FROM production_schedules";
+        $sql = "SELECT ps.*, r.name AS recipe_name 
+                FROM production_schedules ps
+                LEFT JOIN recipes r ON ps.recipe_id = r.id";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

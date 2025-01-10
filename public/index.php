@@ -97,14 +97,55 @@ switch ($segments[0]) {
             $recipeController->listRecipes();
         }
         break;
-
-
-    case 'production':
+     case 'production':
         Middleware::requireLogin(); // Ensure the user is logged in
-        if (isset($segments[1]) && $segments[1] == 'schedule') {
-            $productionController->scheduleProduction();
+        if (isset($segments[1])) {
+            switch ($segments[1]) {
+                case 'schedule':
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $productionController->storeSchedule(); // Handle form submission
+                    } else {
+                        $productionController->scheduleProduction(); // Display the form
+                    }
+                    break;
+
+                case 'view':
+                    if (isset($segments[2])) {
+                        $productionController->viewSchedule($segments[2]); // View a schedule
+                    } else {
+                        header('Location: /production');
+                        exit;
+                    }
+                    break;
+
+                case 'edit':
+                    if (isset($segments[2])) {
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $productionController->updateSchedule($segments[2]); // Handle form submission for updating
+                        } else {
+                            $productionController->editSchedule($segments[2]); // Display the edit form
+                        }
+                    } else {
+                        header('Location: /production');
+                        exit;
+                    }
+                    break;
+
+                case 'delete':
+                    if (isset($segments[2]) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $productionController->deleteSchedule($segments[2]); // Handle deletion
+                    } else {
+                        header('Location: /production');
+                        exit;
+                 }
+                    break;
+
+                default:
+                    $productionController->listSchedules(); // List all schedules
+                    break;
+            }
         } else {
-            $productionController->listSchedules();
+            $productionController->listSchedules(); // List all schedules
         }
         break;
 

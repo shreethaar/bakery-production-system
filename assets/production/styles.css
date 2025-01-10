@@ -1,0 +1,171 @@
+/* General Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Create Schedule Button */
+.create-schedule-button {
+    margin-bottom: 20px;
+}
+
+.btn-create-schedule {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #28a745; /* Green */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.btn-create-schedule:hover {
+    background-color: #218838; /* Darker green */
+}
+
+/* Table Styles */
+.production-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.production-table th, .production-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.production-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.production-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Button Styles */
+.btn-view, .btn-edit, .btn-delete {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-view {
+    background-color: #17a2b8; /* Teal */
+    color: white;
+}
+
+.btn-edit {
+    background-color: #ffc107; /* Yellow */
+    color: black;
+}
+
+.btn-delete {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.btn-view:hover, .btn-edit:hover, .btn-delete:hover {
+    opacity: 0.8;
+}
+
+/* Pagination Styles */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 2px;
+    background-color: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.pagination-link.active {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.pagination-link:hover {
+    background-color: #ddd;
+}
+
+/* Form Styles */
+.production-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button Styles */
+.btn-submit {
+    padding: 10px 20px;
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-submit:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6c757d; /* Gray */
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.btn-back:hover {
+    background-color: #5a6268; /* Darker gray */
+}
