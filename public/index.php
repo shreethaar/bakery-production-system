@@ -154,60 +154,55 @@ switch ($segments[0]) {
         if (isset($segments[1])) {
             switch ($segments[1]) {
                 case 'create':
-                    $batchController->create();
-                    break;
-
-                case 'store':
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        $batchController->store();
+                        $batchController->store(); // Handle form submission
                     } else {
-                        header('Location: /batch');
-                        exit;
+                        $batchController->create(); // Display the form
                     }
                     break;
 
                 case 'edit':
                     if (isset($segments[2])) {
-                        $batchController->edit($segments[2]);
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $batchController->update($segments[2]); // Handle form submission for updating
+                        } else {
+                            $batchController->edit($segments[2]); // Display the edit form
+                        }
                     } else {
-                        header('Location: /batch');
-                        exit;
-                    }
-                    break;
-
-                case 'update':
-                    if (isset($segments[2]) && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                        $batchController->update($segments[2]);
-                    } else {
-                        header('Location: /batch');
-                        exit;
+                        header("Location: /batch"); // Redirect if no batch ID is provided
+                        exit();
                     }
                     break;
 
                 case 'delete':
                     if (isset($segments[2])) {
-                        $batchController->delete($segments[2]);
+                        $batchController->delete($segments[2]); // Handle deletion
                     } else {
-                        header('Location: /batch');
-                        exit;
+                        header("Location: /batch"); // Redirect if no batch ID is provided
+                        exit();
                     }
                     break;
 
+                case 'status':
+                    $batchController->batchStatus(); // Display batch status
+                    break;
+
                 case 'track':
-                    $batchController->trackBatch();
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $batchController->storeBatch(); // Handle batch tracking form submission
+                    } else {
+                        $batchController->trackBatch(); // Display the tracking form
+                    }
                     break;
 
                 default:
-                    // Show a 404 page or redirect to batch list
-                    header('Location: /batch');
-                    exit;
+                    $batchController->index(); // Default to listing all batches
+                    break;
             }
         } else {
-            // Default batch route (list batches)
-            $batchController->index();
+            $batchController->index(); // Default to listing all batches
         }
         break;
-
     case 'register':
         $authController->register();
         break;

@@ -6,50 +6,51 @@ class BatchModel {
         $this->pdo = $pdo;
     }
 
-    // Method to fetch all batches with optional filters and sorting
+    // Fetch all batches with optional filters and sorting
     public function getAllBatches($filters = [], $sortBy = 'start_time', $sortOrder = 'DESC') {
-    $query = "SELECT b.*, r.name as recipe_name, s.production_date,
-              STRING_AGG(DISTINCT CONCAT(u.name, ' (', ba.task, ')'), ', ') as assigned_users
-              FROM batches b
-              LEFT JOIN recipes r ON b.recipe_id = r.id
-              LEFT JOIN production_schedules s ON b.production_schedule_id = s.id
-              LEFT JOIN batch_assignments ba ON b.id = ba.batch_id
-              LEFT JOIN users u ON ba.user_id = u.id";
+        $query = "SELECT b.*, r.name as recipe_name, s.production_date,
+                  STRING_AGG(DISTINCT CONCAT(u.name, ' (', ba.task, ')'), ', ') as assigned_users
+                  FROM batches b
+                  LEFT JOIN recipes r ON b.recipe_id = r.id
+                  LEFT JOIN production_schedules s ON b.production_schedule_id = s.id
+                  LEFT JOIN batch_assignments ba ON b.id = ba.batch_id
+                  LEFT JOIN users u ON ba.user_id = u.id";
 
-    $whereConditions = [];
-    $params = [];
+        $whereConditions = [];
+        $params = [];
 
-    // Apply filters
-    if (!empty($filters['recipe_id'])) {
-        $whereConditions[] = "b.recipe_id = :recipe_id";
-        $params['recipe_id'] = $filters['recipe_id'];
+        // Apply filters
+        if (!empty($filters['recipe_id'])) {
+            $whereConditions[] = "b.recipe_id = :recipe_id";
+            $params['recipe_id'] = $filters['recipe_id'];
+        }
+        if (!empty($filters['status'])) {
+            $whereConditions[] = "b.status = :status";
+            $params['status'] = $filters['status'];
+        }
+        if (!empty($filters['date'])) {
+            $whereConditions[] = "DATE(b.start_time) = :date";
+            $params['date'] = $filters['date'];
+        }
+
+        if (!empty($whereConditions)) {
+            $query .= " WHERE " . implode(" AND ", $whereConditions);
+        }
+
+        $query .= " GROUP BY b.id, r.name, s.production_date";
+
+        // Add sorting
+        $validSortColumns = ['id', 'recipe_name', 'production_date', 'start_time', 'status'];
+        if (in_array($sortBy, $validSortColumns)) {
+            $query .= " ORDER BY $sortBy $sortOrder";
+        }
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    if (!empty($filters['status'])) {
-        $whereConditions[] = "b.status = :status";
-        $params['status'] = $filters['status'];
-    }
-    if (!empty($filters['date'])) {
-        $whereConditions[] = "DATE(b.start_time) = :date";
-        $params['date'] = $filters['date'];
-    }
 
-    if (!empty($whereConditions)) {
-        $query .= " WHERE " . implode(" AND ", $whereConditions);
-    }
-
-    $query .= " GROUP BY b.id, r.name, s.production_date";
-
-    // Add sorting
-    $validSortColumns = ['id', 'recipe_name', 'production_date', 'start_time', 'status'];
-    if (in_array($sortBy, $validSortColumns)) {
-        $query .= " ORDER BY $sortBy $sortOrder";
-    }
-
-    $stmt = $this->pdo->prepare($query);
-    $stmt->execute($params);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-    // Method to fetch a single batch by ID
+    // Fetch a single batch by ID
     public function getBatchById($batchId) {
         $sql = "SELECT b.*, r.name as recipe_name, s.production_date
                 FROM batches b
@@ -61,7 +62,7 @@ class BatchModel {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Method to create a new batch with task assignments
+    // Create a new batch
     public function createBatch($recipeId, $scheduleId, $startTime, $endTime, $remarks, $assignments = []) {
         $this->pdo->beginTransaction();
 
@@ -102,7 +103,7 @@ class BatchModel {
         }
     }
 
-    // Method to update a batch
+    // Update a batch
     public function updateBatch($batchId, $recipeId, $scheduleId, $startTime, $endTime, $status, $remarks, $assignments = []) {
         $this->pdo->beginTransaction();
 
@@ -155,7 +156,7 @@ class BatchModel {
         }
     }
 
-    // Method to delete a batch
+    // Delete a batch
     public function deleteBatch($batchId) {
         $this->pdo->beginTransaction();
 
@@ -178,14 +179,14 @@ class BatchModel {
         }
     }
 
-    // Method to fetch all recipes
+    // Fetch all recipes
     public function getAllRecipes() {
         $sql = "SELECT id, name FROM recipes ORDER BY name";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Method to fetch all schedules
+    // Fetch all schedules
     public function getAllSchedules() {
         $sql = "SELECT s.id, r.name as recipe_name, s.production_date
                 FROM production_schedules s
@@ -196,14 +197,14 @@ class BatchModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Method to fetch all bakers
+    // Fetch all bakers
     public function getAllBakers() {
         $sql = "SELECT id, name FROM users WHERE role = 'Baker' ORDER BY name";
         $stmt = $this->pdo->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Method to fetch assignments for a batch
+    // Fetch assignments for a batch
     public function getBatchAssignments($batchId) {
         $sql = "SELECT * FROM batch_assignments WHERE batch_id = :batch_id";
         $stmt = $this->pdo->prepare($sql);
