@@ -19,49 +19,50 @@ class AuthController {
             // Sanitize inputs
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
+            /*    
             // Debug: Print the sanitized username and password
             echo "Sanitized Username: " . $username . "<br>";
             echo "Sanitized Password: " . $password . "<br>";
-
+            */
             // Fetch the user by username
             $user = $this->userModel->getUserByUsername($username);
 
             // Debug: Print the fetched user data
+            /*
             echo "Fetched User Data: ";
             print_r($user);
             echo "<br>";
-
+            */
             if ($user && isset($user['password'])) {
                 // Debug: Print the hashed password from the database
-                echo "Hashed Password from DB: " . $user['password'] . "<br>";
+                /*echo "Hashed Password from DB: " . $user['password'] . "<br>";*/
 
                 // Verify password
                 if (password_verify($password, $user['password'])) {
                     // Debug: Print success message
-                    echo "Password verification successful!<br>";
+                /*echo "Password verification successful!<br>";*/
 
                     // Set session variables
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['role'] = $user['role'];
 
                     // Debug: Print session variables
-                    echo "Session User ID: " . $_SESSION['user_id'] . "<br>";
-                    echo "Session Role: " . $_SESSION['role'] . "<br>";
+                    /*echo "Session User ID: " . $_SESSION['user_id'] . "<br>";
+                    echo "Session Role: " . $_SESSION['role'] . "<br>";*/
 
                     // Redirect to dashboard
                     header('Location: /dashboard');
                     exit;
                 } else {
                     // Debug: Print failure message
-                    echo "Password verification failed!<br>";
+                    /*echo "Password verification failed!<br>";*/
 
                     // Invalid password
                     $error = "Invalid username or password.";
                 }
             } else {
                 // Debug: Print failure message
-                echo "User not found or password not set!<br>";
+                /*echo "User not found or password not set!<br>";*/
 
                 // Invalid username or password
                 $error = "Invalid username or password.";
@@ -71,7 +72,7 @@ class AuthController {
         // Show login form (with error message if applicable)
         include __DIR__ . '/../views/auth/login.php';
     }
-
+    
     // Handle user logout
     public function logout() {
         // Destroy the session

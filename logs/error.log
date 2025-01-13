@@ -515,3 +515,40 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 136
+[13-Jan-2025 19:41:30 UTC] Database connection failed: SQLSTATE[08006] [7] connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  role "REDACTED" does not exist
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "schedule_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 35
+[13-Jan-2025 19:59:33 UTC] PHP Warning:  Undefined array key "schedule_date" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 19:59:33 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 20:13:02 UTC] PHP Parse error:  syntax error, unexpected token "public" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/AuthController.php on line 76
+[13-Jan-2025 20:13:08 UTC] PHP Parse error:  syntax error, unexpected token "public" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/AuthController.php on line 76
+[13-Jan-2025 20:13:15 UTC] PHP Parse error:  syntax error, unexpected token "public" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/AuthController.php on line 76

@@ -12,6 +12,8 @@
 
 <!-- Batch Creation Form -->
 <form method="POST" action="/batch/store">
+    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
+
     <div class="form-section">
         <h2>Batch Details</h2>
         
@@ -20,8 +22,8 @@
             <select id="recipe_id" name="recipe_id" required>
                 <option value="">Select Recipe</option>
                 <?php foreach ($recipes as $recipe): ?>
-                    <option value="<?php echo $recipe['recipe_id']; ?>">
-                        <?php echo htmlspecialchars($recipe['recipe_name']); ?>
+                    <option value="<?php echo $recipe['id']; ?>">
+                        <?php echo htmlspecialchars($recipe['name']); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -32,8 +34,8 @@
             <select id="schedule_id" name="schedule_id" required>
                 <option value="">Select Schedule</option>
                 <?php foreach ($schedules as $schedule): ?>
-                    <option value="<?php echo $schedule['schedule_id']; ?>">
-                        <?php echo htmlspecialchars($schedule['recipe_name'] . ' - ' . date('M d, Y', strtotime($schedule['schedule_date']))); ?>
+                    <option value="<?php echo $schedule['id']; ?>">
+                        <?php echo htmlspecialchars($schedule['recipe_name'] . ' - ' . date('M d, Y', strtotime($schedule['production_date']))); ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -66,8 +68,8 @@
                     <select name="assignments[0][user_id]" required>
                         <option value="">Select Baker</option>
                         <?php foreach ($bakers as $baker): ?>
-                            <option value="<?php echo $baker['user_id']; ?>">
-                                <?php echo htmlspecialchars($baker['user_fullName']); ?>
+                            <option value="<?php echo $baker['id']; ?>">
+                                <?php echo htmlspecialchars($baker['name']); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>
@@ -107,6 +109,11 @@ function addTask() {
     // Update input names
     newTask.querySelectorAll('select').forEach(select => {
         select.name = select.name.replace('[0]', `[${index}]`);
+    });
+
+    // Clear selected values
+    newTask.querySelectorAll('select').forEach(select => {
+        select.selectedIndex = 0;
     });
 
     // Show remove button
