@@ -76,6 +76,68 @@ class ProductionController {
             }
         }
     }
+
+    public function viewSchedule($scheduleId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
+        // Fetch the schedule details from the model
+        $schedule = $this->productionModel->getScheduleById($scheduleId);
+
+        if (!$schedule) {
+            $_SESSION['error_message'] = "Schedule not found.";
+            header("Location: /production");
+            exit;
+        }
+
+        // Include the view to display the schedule details
+        include __DIR__ . '/../views/production/view.php';
+    }
+
+    public function editSchedule($scheduleId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
+        // Fetch the schedule details from the model
+        $schedule = $this->productionModel->getScheduleById($scheduleId);
+
+        if (!$schedule) {
+            $_SESSION['error_message'] = "Schedule not found.";
+            header("Location: /production");
+            exit;
+        }
+
+        // Fetch all recipes and users for the form
+        $recipeModel = new RecipeModel($this->pdo);
+        $recipes = $recipeModel->getAllRecipes();
+
+        $userModel = new UserModel($this->pdo);
+        $users = $userModel->getAllUsers();
+
+        // Include the view to display the edit form
+        include __DIR__ . '/../views/production/edit.php';
+    }
+
+    public function deleteSchedule($scheduleId) {
+        Middleware::requireLogin(); // Ensure the user is logged in
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                // Delete the schedule from the model
+                $this->productionModel->deleteSchedule($scheduleId);
+
+                $_SESSION['success_message'] = "Schedule deleted successfully!";
+                header("Location: /production");
+                exit;
+            } catch (Exception $e) {
+                $_SESSION['error_message'] = "Error deleting schedule: " . $e->getMessage();
+                header("Location: /production");
+                exit;
+            }
+        } else {
+            // If not a POST request, redirect to the production list
+            header("Location: /production");
+            exit;
+        }
+    }
 }
 
 ?>

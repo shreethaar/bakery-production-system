@@ -502,3 +502,16 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 136
+[13-Jan-2025 18:26:51 UTC] Database connection failed: SQLSTATE[08006] [7] connection to server at "localhost" (127.0.0.1), port 5432 failed: FATAL:  role "REDACTED" does not exist
+[13-Jan-2025 18:27:46 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::viewSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 114
+[13-Jan-2025 18:27:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::editSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:126
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 126
+[13-Jan-2025 18:28:02 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::deleteSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 136
