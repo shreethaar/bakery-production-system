@@ -75,4 +75,3 @@ For any inquiries or feedback, please reach out to [shreethaar](https://github.c
 
 ---
 
-This README should provide a comprehensive overview of the Bakery Production System and guide users through setting up and using the application. If you would like to make any changes or additions, feel free to let me know!
