@@ -76,6 +76,13 @@ class UserModel {
             return $this->getUser($user['id']);
         }
         return false;
+    
     }
+
+    public function getAllUsers() {
+        $sql = "SELECT id, name FROM {$this->table} WHERE role = 'baker'"; // Fetch only bakers
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } 
 }
 ?>

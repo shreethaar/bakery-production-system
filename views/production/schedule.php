@@ -59,14 +59,26 @@
             <input type="number" id="quantity" name="quantity" required>
         </div>
 
+        <!-- Recipe Dropdown -->
+        <div class="form-group">
+            <label for="recipe_id">Recipe:</label>
+            <select id="recipe_id" name="recipe_id" required>
+                <?php foreach ($recipes as $recipe): ?>
+                    <option value="<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['name']) ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <!-- Assigned Baker Dropdown -->
         <div class="form-group">
             <label for="assigned_baker">Assigned Baker:</label>
             <select id="assigned_baker" name="assigned_baker" required>
                 <?php foreach ($users as $user): ?>
-                    <option value="<?php echo $user['id']; ?>"><?php echo $user['name']; ?></option>
+                    <option value="<?= $user['id'] ?>"><?= htmlspecialchars($user['name']) ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
+
 
         <div class="form-group">
             <label for="equipment_needed">Equipment Needed (JSON format):</label>

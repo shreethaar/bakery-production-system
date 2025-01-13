@@ -1,9 +1,13 @@
 <?php
+
 class ProductionController {
     private $productionModel;
+    private $pdo;
 
-    public function __construct($productionModel) {
+    // Update the constructor to accept $pdo
+    public function __construct($productionModel, $pdo) {
         $this->productionModel = $productionModel;
+        $this->pdo = $pdo; // Assign the passed $pdo to $this->pdo
     }
 
     // Method to list all production schedules
@@ -21,6 +25,14 @@ class ProductionController {
     public function scheduleProduction() {
         Middleware::requireLogin(); // Ensure the user is logged in
 
+        // Fetch all recipes from the RecipeModel
+        $recipeModel = new RecipeModel($this->pdo); // Use $this->pdo
+        $recipes = $recipeModel->getAllRecipes();
+
+        // Fetch all bakers from the UserModel
+        $userModel = new UserModel($this->pdo); // Use $this->pdo
+        $users = $userModel->getAllUsers();
+
         // Include the view to display the schedule production form
         include __DIR__ . '/../views/production/schedule.php';
     }
@@ -29,29 +41,35 @@ class ProductionController {
     public function storeSchedule() {
         Middleware::requireLogin(); // Ensure the user is logged in
 
-        // Handle form submission and save the schedule
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $recipe_id = $_POST['recipe_id'];
-            $order_id = $_POST['order_id'];
-            $production_date = $_POST['production_date'];
-            $start_time = $_POST['start_time'];
-            $end_time = $_POST['end_time'];
-            $quantity = $_POST['quantity'];
-            $assigned_baker = $_POST['assigned_baker'];
-            $equipment_needed = json_decode($_POST['equipment_needed'], true);
-            $status = 'scheduled'; // Default status
-            $created_by = $_SESSION['user_id']; // Use the logged-in user's ID
+            // Validate required fields
+            $requiredFields = ['recipe_id', 'order_id', 'production_date', 'start_time', 'end_time', 'quantity', 'assigned_baker', 'equipment_needed'];
+            foreach ($requiredFields as $field) {
+                if (empty($_POST[$field])) {
+                    $_SESSION['error_message'] = "Please fill in all required fields.";
+                    header("Location: /production/schedule");
+                    exit;
+                }
+            }
 
+            // Proceed with creating the schedule
             try {
-                // Create the production schedule
-                $scheduleId = $this->productionModel->createSchedule($recipe_id, $order_id, $production_date, $start_time, $end_time, $quantity, $assigned_baker, $equipment_needed, $status, $created_by);
-
-                // Redirect to the production schedules list with a success message
+                $scheduleId = $this->productionModel->createSchedule(
+                    $_POST['recipe_id'],
+                    $_POST['order_id'],
+                    $_POST['production_date'],
+                    $_POST['start_time'],
+                    $_POST['end_time'],
+                    $_POST['quantity'],
+                    $_POST['assigned_baker'],
+                    json_decode($_POST['equipment_needed'], true),
+                    'scheduled', // Default status
+                    $_SESSION['user_id'] // Logged-in user ID
+                );
                 $_SESSION['success_message'] = "Production schedule created successfully!";
                 header("Location: /production");
                 exit;
             } catch (Exception $e) {
-                // Handle errors
                 $_SESSION['error_message'] = "Error creating production schedule: " . $e->getMessage();
                 header("Location: /production/schedule");
                 exit;
@@ -59,4 +77,5 @@ class ProductionController {
         }
     }
 }
+
 ?>

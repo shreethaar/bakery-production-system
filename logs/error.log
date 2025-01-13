@@ -352,3 +352,153 @@
 [13-Jan-2025 15:50:55 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
 [13-Jan-2025 15:50:55 UTC] PHP Warning:  Undefined variable $users in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
 [13-Jan-2025 15:50:55 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:28:43 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:43 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:28:59 UTC] PHP Warning:  Undefined variable $recipes in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 16:28:59 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 16:28:59 UTC] PHP Warning:  Undefined variable $users in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 16:28:59 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 16:29:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 16:29:20 UTC] PHP Warning:  Undefined variable $recipes in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 16:29:20 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 16:29:20 UTC] PHP Warning:  Undefined variable $users in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 16:29:20 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 17:30:25 UTC] PHP Warning:  Undefined variable $recipes in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 17:30:25 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 31
+[13-Jan-2025 17:30:25 UTC] PHP Warning:  Undefined variable $users in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 17:30:25 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/production/schedule.php on line 65
+[13-Jan-2025 17:44:47 UTC] PHP Warning:  Undefined property: ProductionController::$pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 24
+[13-Jan-2025 17:44:47 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(25): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:44:48 UTC] PHP Warning:  Undefined property: ProductionController::$pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 24
+[13-Jan-2025 17:44:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(25): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:44:50 UTC] PHP Warning:  Undefined property: ProductionController::$pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 24
+[13-Jan-2025 17:44:50 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(25): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:44:52 UTC] PHP Warning:  Undefined property: ProductionController::$pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 24
+[13-Jan-2025 17:44:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(25): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:49:58 UTC] PHP Warning:  Undefined variable $pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 8
+[13-Jan-2025 17:49:58 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(27): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:49:59 UTC] PHP Warning:  Undefined variable $pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 8
+[13-Jan-2025 17:49:59 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(27): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 17:50:00 UTC] PHP Warning:  Undefined variable $pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 8
+[13-Jan-2025 17:51:48 UTC] PHP Warning:  Undefined variable $pdo in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php on line 8
+[13-Jan-2025 17:51:48 UTC] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php:12
+Stack trace:
+#0 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/controllers/ProductionController.php(27): RecipeModel->getAllRecipes()
+#1 /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php(108): ProductionController->scheduleProduction()
+#2 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/models/RecipeModel.php on line 12
+[13-Jan-2025 18:04:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::editSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:126
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 126
+[13-Jan-2025 18:04:17 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::deleteSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 136
+[13-Jan-2025 18:04:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::viewSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 114
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 23
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "recipe_name" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 24
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "schedule_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 35
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "schedule_date" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "schedule_id" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 35
+[13-Jan-2025 18:05:14 UTC] PHP Warning:  Undefined array key "schedule_date" in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 18:05:14 UTC] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/views/batch/create.php on line 36
+[13-Jan-2025 18:15:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::viewSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 114
+[13-Jan-2025 18:15:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::viewSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:114
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 114
+[13-Jan-2025 18:15:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::editSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:126
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 126
+[13-Jan-2025 18:16:03 UTC] PHP Fatal error:  Uncaught Error: Call to undefined method ProductionController::deleteSchedule() in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php:136
+Stack trace:
+#0 {main}
+  thrown in /home/trevorphilips/Desktop/Coding/temp/bakery-production-system/public/index.php on line 136

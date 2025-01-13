@@ -41,7 +41,7 @@ $batchModel = new BatchModel($pdo);
 // Initialize controllers
 $authController = new AuthController($userModel);
 $recipeController = new RecipeController($recipeModel);
-$productionController = new ProductionController($productionModel);
+$productionController = new ProductionController($productionModel, $pdo);
 $batchController = new BatchController($batchModel);
 
 // Routing logic
